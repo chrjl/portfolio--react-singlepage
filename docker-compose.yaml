@@ -1,0 +1,16 @@
+name: chrjl_dev--vite-contentlayer
+
+services:
+  dev:
+    image: node:lts-slim
+    volumes:
+      - .:${WORKDIR}
+    user: root
+    working_dir: ${WORKDIR}
+    ports:
+      - 5173:5173
+    tty: true
+    entrypoint:
+      - npm
+      - run
+      - dev
