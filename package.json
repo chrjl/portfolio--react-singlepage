@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
-    "contentlayer-test": "contentlayer --help",
+    "dev": "concurrently -c \"auto\" \"npm:contentlayer-dev\" \"npm:vite\"",
+    "vite": "vite --host",
+    "contentlayer-dev": "contentlayer dev --clearCache --verbose",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -21,6 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
+    "concurrently": "^8.2.2",
     "contentlayer": "^0.3.4",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
