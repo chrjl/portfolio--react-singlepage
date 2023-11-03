@@ -5,6 +5,7 @@ services:
     image: node:lts-slim
     volumes:
       - .:${WORKDIR}
+      - ${CONTENT_DIR_PATH}:${WORKDIR}/content
     user: root
     working_dir: ${WORKDIR}
     ports:
