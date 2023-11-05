@@ -1,5 +1,6 @@
 import CardTitle from './CardTitle';
 import CardKeywords from './CardKeywords';
+import LinkList, { DescribedLink } from './LinkList';
 
 interface CardProps {
   title: string | string[];
