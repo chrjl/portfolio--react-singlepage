@@ -8,20 +8,18 @@ export default function CardTitle({ title }: CardTitleProps) {
     title.map((segment, index) => (
       <span
         key={index}
-        className="inline-block whitespace-pre-wrap underline after:content-['_'] last:after:content-none"
+        className="inline-block after:content-['_'] last:after:content-none"
       >
         {segment}
       </span>
     ))
   ) : (
-    <span className="inline-block whitespace-pre-wrap underline">{title}</span>
+    <span className="inline-block">{title}</span>
   );
 
   return (
-    <>
-      <div className="text-center font-semibold uppercase underline group-hover:font-bold sm:text-left">
-        <h1 className="leading-snug">{titleFragment}</h1>
-      </div>
-    </>
+    <h1 className="uppercase leading-snug [&>*]:whitespace-pre-wrap [&>*]:underline">
+      {titleFragment}
+    </h1>
   );
 }
