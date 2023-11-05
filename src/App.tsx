@@ -1,6 +1,8 @@
 import githubMark from './assets/github-mark.svg';
 import faLocationDot from './assets/fa-location-dot.svg';
 
+import { allPosts, allStubs } from '../.contentlayer/generated';
+
 function App() {
   return (
     <div className="container mx-auto my-8 max-w-screen-sm whitespace-pre-line font-sans">
