@@ -1,6 +1,8 @@
 import githubMark from './assets/github-mark.svg';
 import faLocationDot from './assets/fa-location-dot.svg';
 
+import Card from './components/Card';
+
 import { allPosts, allStubs } from '../.contentlayer/generated';
 
 function App() {
@@ -24,6 +26,22 @@ function App() {
           </a>
         </h3>
       </header>
+
+      <ul>
+        {allPosts.length &&
+          allPosts.map((post) => (
+            <li key={post._id} className="m-8">
+              <Card {...post} />
+            </li>
+          ))}
+
+        {allStubs.length &&
+          allStubs.map((post) => (
+            <li key={post._id} className="m-8">
+              <Card {...post} />
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
