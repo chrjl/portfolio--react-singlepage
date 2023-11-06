@@ -3,6 +3,7 @@ import CardKeywords from './CardKeywords';
 import LinkList, { DescribedLink } from './LinkList';
 
 import githubMark from '../../assets/github-mark.svg';
+import faFileLines from '../../assets/fa-file-lines.svg';
 
 interface CardProps {
   title: string | string[];
@@ -10,6 +11,7 @@ interface CardProps {
   links?: {
     assets?: DescribedLink[];
     repo?: string[];
+    documentation?: string[];
   };
 }
 
@@ -28,6 +30,18 @@ export default function Card(props: CardProps) {
           {links.assets && (
             <div className="mb-8 font-content text-sm last:mb-0">
               <LinkList links={links.assets} />
+            </div>
+          )}
+
+          {links.documentation && (
+            <div className="text-sm">
+              <LinkList
+                icon={faFileLines}
+                links={links.documentation.map((link) => ({
+                  description: 'Documentation',
+                  href: link,
+                }))}
+              />
             </div>
           )}
 
