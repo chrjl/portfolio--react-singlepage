@@ -3,11 +3,11 @@ export interface DescribedLink {
   href: string;
 }
 
-interface LinkListProps {
+interface LinksProps {
   links: DescribedLink[];
 }
 
-export default function LinkList({ links }: LinkListProps) {
+function Links({ links }: LinksProps) {
   return (
     <ul>
       {links.map(({ description, href }, index) => (
@@ -18,5 +18,24 @@ export default function LinkList({ links }: LinkListProps) {
         </li>
       ))}
     </ul>
+  );
+}
+
+interface LinkListProps extends LinksProps {
+  icon?: string; // SVG
+}
+
+export default function LinkList({ icon, links }: LinkListProps) {
+  if (!icon) {
+    return <Links links={links} />;
+  }
+
+  return (
+    <div className="flex flex-row items-center">
+      <img className="inline-block h-4 w-4" src={icon} />
+      <div className="ml-2">
+        <Links links={links} />
+      </div>
+    </div>
   );
 }
