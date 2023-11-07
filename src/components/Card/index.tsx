@@ -1,18 +1,11 @@
 import CardTitle from './CardTitle';
 import CardKeywords from './CardKeywords';
-import LinkList, { DescribedLink } from './LinkList';
-
-import githubMark from '../../assets/github-mark.svg';
-import faFileLines from '../../assets/fa-file-lines.svg';
+import CardLinks, { LinksType } from './CardLinks';
 
 interface CardProps {
   title: string | string[];
   keywords?: string[];
-  links?: {
-    assets?: DescribedLink[];
-    repo?: string[];
-    documentation?: string[];
-  };
+  links?: LinksType;
 }
 
 export default function Card(props: CardProps) {
@@ -27,35 +20,7 @@ export default function Card(props: CardProps) {
 
       {links && (
         <div className="mt-8 group-hover:font-bold">
-          {links.assets && (
-            <div className="mb-8 font-content text-sm last:mb-0">
-              <LinkList links={links.assets} />
-            </div>
-          )}
-
-          {links.documentation && (
-            <div className="text-sm">
-              <LinkList
-                icon={faFileLines}
-                links={links.documentation.map((link) => ({
-                  description: 'Documentation',
-                  href: link,
-                }))}
-              />
-            </div>
-          )}
-
-          {links.repo && (
-            <div className="mt-2 text-xs">
-              <LinkList
-                icon={githubMark}
-                links={links.repo.map((link) => ({
-                  description: link,
-                  href: link,
-                }))}
-              />
-            </div>
-          )}
+          <CardLinks links={links} />
         </div>
       )}
     </div>
