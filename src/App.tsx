@@ -6,7 +6,8 @@ import tsLogo from './assets/ts-logo-128.svg';
 
 import Card from './components/Card';
 
-import { allPosts, allStubs } from '../.contentlayer/generated';
+import * as content from '../.contentlayer/generated';
+const { allPosts, allStubs } = content;
 
 function App() {
   return (
