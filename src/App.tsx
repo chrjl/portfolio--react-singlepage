@@ -7,7 +7,7 @@ import tsLogo from './assets/ts-logo-128.svg';
 import Card from './components/Card';
 
 import * as content from '../.contentlayer/generated';
-const { allPosts, allStubs } = content;
+const { allPosts, allStubs, allArchives } = content;
 
 function App() {
   return (
@@ -55,6 +55,13 @@ function App() {
         {allStubs.length &&
           allStubs.map((post) => (
             <li key={post._id} className="m-8">
+              <Card {...post} />
+            </li>
+          ))}
+
+        {allArchives.length &&
+          allArchives.map((post) => (
+            <li key={post._id} className="m-8 italic opacity-75">
               <Card {...post} />
             </li>
           ))}
