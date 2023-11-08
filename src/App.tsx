@@ -11,7 +11,7 @@ const { allPosts, allStubs, allArchives } = content;
 
 function App() {
   return (
-    <div className="container mx-auto my-8 max-w-screen-sm whitespace-pre-line font-sans">
+    <div className="container mx-auto my-8 max-w-screen-sm font-sans">
       <header className="my-8 text-center">
         <h1 className="text-4xl font-extrabold">Christopher Lee</h1>
 
