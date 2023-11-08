@@ -1,3 +1,6 @@
+import { sanitize } from 'isomorphic-dompurify';
+import parse from 'html-react-parser';
+
 import CardTitle from './CardTitle';
 import CardKeywords from './CardKeywords';
 import CardLinks, { LinksType } from './CardLinks';
