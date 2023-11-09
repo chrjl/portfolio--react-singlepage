@@ -9,9 +9,16 @@ import Card from './components/Card';
 import * as content from '../.contentlayer/generated';
 const { allPosts, allStubs, allArchives } = content;
 
+const development = import.meta.env.DEV;
+
 function App() {
   return (
-    <div className="container mx-auto my-8 max-w-screen-sm font-sans">
+    <div className="container relative mx-auto my-8 max-w-screen-sm font-sans">
+      {development && (
+        <div className="right absolute end-0 top-0 ml-auto rounded bg-black  px-2 font-bold text-white">
+          DEV
+        </div>
+      )}
       <header className="my-8 text-center">
         <h1 className="text-4xl font-extrabold">Christopher Lee</h1>
 
@@ -48,6 +55,11 @@ function App() {
         {allPosts &&
           allPosts.map((document) => (
             <li key={document._id} className="group relative m-8">
+              {development && (
+                <CardTooltip
+                  text={`${document.type} -- ${document._raw.flattenedPath}`}
+                />
+              )}
               <Card {...document} />
             </li>
           ))}
@@ -55,6 +67,11 @@ function App() {
         {allStubs &&
           allStubs.map((document) => (
             <li key={document._id} className="group relative m-8">
+              {development && (
+                <CardTooltip
+                  text={`${document.type} -- ${document._raw.flattenedPath}`}
+                />
+              )}
               <Card {...document} />
             </li>
           ))}
@@ -65,10 +82,27 @@ function App() {
               key={document._id}
               className="group relative m-8 italic opacity-75"
             >
+              {development && (
+                <CardTooltip
+                  text={`${document.type} -- ${document._raw.flattenedPath}`}
+                />
+              )}
               <Card {...document} />
             </li>
           ))}
       </ul>
+    </div>
+  );
+}
+
+interface CardTooltipProps {
+  text: string;
+}
+
+function CardTooltip({ text }: CardTooltipProps) {
+  return (
+    <div className="collapse absolute end-0 top-0 m-0 rounded bg-black p-1 text-xs font-bold uppercase text-white group-hover:visible">
+      {text}
     </div>
   );
 }
