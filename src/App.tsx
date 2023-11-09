@@ -45,24 +45,27 @@ function App() {
       </header>
 
       <ul className="mt-16">
-        {allPosts.length &&
-          allPosts.map((post) => (
-            <li key={post._id} className="m-8">
-              <Card {...post} />
+        {allPosts &&
+          allPosts.map((document) => (
+            <li key={document._id} className="group relative m-8">
+              <Card {...document} />
             </li>
           ))}
 
-        {allStubs.length &&
-          allStubs.map((post) => (
-            <li key={post._id} className="m-8">
-              <Card {...post} />
+        {allStubs &&
+          allStubs.map((document) => (
+            <li key={document._id} className="group relative m-8">
+              <Card {...document} />
             </li>
           ))}
 
-        {allArchives.length &&
-          allArchives.map((post) => (
-            <li key={post._id} className="m-8 italic opacity-75">
-              <Card {...post} />
+        {allArchives &&
+          allArchives.map((document) => (
+            <li
+              key={document._id}
+              className="group relative m-8 italic opacity-75"
+            >
+              <Card {...document} />
             </li>
           ))}
       </ul>
