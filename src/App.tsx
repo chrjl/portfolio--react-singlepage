@@ -1,5 +1,4 @@
 import githubMark from './assets/github-mark.svg';
-import faLocationDot from './assets/fa-location-dot.svg';
 import nodeLogo from './assets/nodejs-stacked-dark.svg';
 import reactLogo from './assets/react.svg';
 import tsLogo from './assets/ts-logo-128.svg';
@@ -41,7 +40,6 @@ function App() {
         </h2>
 
         <h3 className="mt-4 text-sm [&>*]:align-middle">
-          <img height="100%" className="mr-1 inline" src={faLocationDot} />
           <span>Los Angeles, California</span>
           <span className="px-4">|</span>
           <img className="mr-1 inline h-4" src={githubMark} />
