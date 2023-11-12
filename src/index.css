@@ -17,11 +17,25 @@
 
     & p {
       margin: 1em 0;
+
+      &:has(+ ul) {
+        margin-bottom: 0;
+      }
     }
 
     & ul {
       list-style-type: disc;
       margin-left: 2em;
+      display: inline-block;
+
+      & li.task-list-item {
+        list-style-type: none;
+
+        & input[type='checkbox'] {
+          margin-left: -1.3em;
+          width: 1em;
+        }
+      }
 
       & p {
         margin: 0.5em 0;
