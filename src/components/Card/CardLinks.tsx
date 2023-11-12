@@ -2,6 +2,7 @@ import LinkList, { DescribedLink } from './LinkList';
 
 import githubMark from '../../assets/github-mark.svg';
 import faFileLines from '../../assets/fa-file-lines.svg';
+import faUpRightFromSquare from '../../assets/fa-up-right-from-square.svg';
 
 export interface LinksType {
   assets?: DescribedLink[];
@@ -20,7 +21,9 @@ export default function CardLinks({ links }: CardLinksProps) {
     <>
       {assets && (
         <div className="mb-8 font-content text-sm last:mb-0">
-          <LinkList links={assets} />
+          {assets.map((asset) => (
+            <LinkList icon={faUpRightFromSquare} />
+          ))}
         </div>
       )}
 
