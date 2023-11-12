@@ -1,6 +1,7 @@
 export interface DescribedLink {
   description: string;
   href: string;
+  icon?: string;
 }
 
 interface LinksProps {

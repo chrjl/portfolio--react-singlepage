@@ -16,6 +16,7 @@
     "@fontsource-variable/inter": "^5.0.5",
     "@fontsource/arimo": "^5.0.6",
     "@fontsource/cousine": "^5.0.6",
+    "@heroicons/react": "^2.0.18",
     "contentlayer": "^0.3.4",
     "html-react-parser": "^5.0.6",
     "isomorphic-dompurify": "^1.9.0",
