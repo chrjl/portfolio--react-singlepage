@@ -42,7 +42,7 @@ export default function CardLinks({ links }: CardLinksProps) {
       {repo && (
         <div className="mt-2 text-xs">
           <LinkList
-            icon={githubMark}
+            icon={<img src={githubMark} />}
             links={repo.map((link) => ({
               description: link,
               href: link,
