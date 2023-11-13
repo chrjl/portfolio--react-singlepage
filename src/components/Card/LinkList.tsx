@@ -22,7 +22,7 @@ function Links({ links }: LinksProps) {
 }
 
 interface LinkListProps extends LinksProps {
-  icon?: string; // SVG
+  icon?: React.ReactNode;
 }
 
 export default function LinkList({ icon, links }: LinkListProps) {
@@ -32,8 +32,10 @@ export default function LinkList({ icon, links }: LinkListProps) {
 
   return (
     <div className="flex flex-row items-center">
-      <img className="inline-block h-4 w-4" src={icon} />
-      <div className="ml-2">
+      <div className="w-8 [&>*]:m-auto [&>*]:h-[1.25em] [&>*]:stroke-2">
+        {icon}
+      </div>
+      <div className="ml-0">
         <Links links={links} />
       </div>
     </div>
