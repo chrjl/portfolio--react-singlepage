@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 
+import { DocumentModel } from './models';
+
 import githubMark from './assets/github-mark.svg';
 import nodeLogo from './assets/nodejs-stacked-dark.svg';
 import reactLogo from './assets/react.svg';
@@ -10,7 +12,7 @@ import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid';
 import Card from './components/Card';
 
 import * as content from '../.contentlayer/generated';
-const { allDocuments } = content;
+const { allDocuments }: { allDocuments: DocumentModel[] } = content;
 
 function App({ development = false }) {
   const allPublished = development

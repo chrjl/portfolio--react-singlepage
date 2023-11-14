@@ -1,13 +1,8 @@
-import LinkList, { DescribedLink } from './LinkList';
+import { LinksType } from '../../models';
+import LinkList from './LinkList';
 
 import githubMark from '../../assets/github-mark.svg';
 import * as HeroIcons from '@heroicons/react/24/outline';
-
-export interface LinksType {
-  assets?: DescribedLink[];
-  repo?: string[];
-  documentation?: string[];
-}
 
 interface CardLinksProps {
   links: LinksType;

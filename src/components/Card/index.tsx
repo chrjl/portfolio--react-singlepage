@@ -1,21 +1,13 @@
 import { sanitize } from 'isomorphic-dompurify';
 import parse from 'html-react-parser';
 
-import { Markdown } from '../../../.contentlayer/generated/types';
+import { DocumentModel } from '../../models';
 
 import CardTitle from './CardTitle';
 import CardKeywords from './CardKeywords';
-import CardLinks, { LinksType } from './CardLinks';
+import CardLinks from './CardLinks';
 
-interface CardProps {
-  title: string | string[];
-  keywords?: string[];
-  links?: LinksType;
-  description?: Markdown;
-  status?: Markdown;
-}
-
-export default function Card(props: CardProps) {
+export default function Card(props: DocumentModel) {
   const { title, keywords, description, links, status } = props;
 
   return (

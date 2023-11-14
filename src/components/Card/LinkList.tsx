@@ -1,8 +1,4 @@
-export interface DescribedLink {
-  description: string;
-  href: string;
-  icon?: string;
-}
+import { DescribedLink } from '../../models';
 
 interface LinksProps {
   links: DescribedLink[];
