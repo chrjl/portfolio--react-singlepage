@@ -12,6 +12,7 @@ interface CardProps {
   keywords?: string[];
   links?: LinksType;
   description?: Markdown;
+  status?: Markdown;
 }
 
 export default function Card(props: CardProps) {
