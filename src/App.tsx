@@ -1,16 +1,18 @@
+import { useState } from 'react';
+
 import githubMark from './assets/github-mark.svg';
 import nodeLogo from './assets/nodejs-stacked-dark.svg';
 import reactLogo from './assets/react.svg';
 import tsLogo from './assets/ts-logo-128.svg';
+import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid';
 
 import Card from './components/Card';
 
 import * as content from '../.contentlayer/generated';
 const { allPosts, allStubs, allArchives } = content;
 
-const development = import.meta.env.DEV;
+function App({ development = false }) {
 
-function App() {
   return (
     <div className="container relative mx-auto my-8 max-w-screen-sm font-sans">
       {development && (
@@ -90,6 +92,29 @@ function App() {
           ))}
       </ul>
     </div>
+  );
+}
+
+export function DevApp() {
+  const [isDevelopment, setDevelopment] = useState(true);
+
+  return (
+    <>
+      <div className="sticky top-0 z-50 h-8 bg-black">
+        <div className="mx-auto max-w-screen-sm align-middle font-sans font-bold  text-white">
+          <button
+            type="button"
+            className="rounded border-2 border-solid border-white px-2"
+            onClick={() => setDevelopment(!isDevelopment)}
+          >
+            <ArrowsRightLeftIcon className="inline h-4 stroke-2 pr-1" />
+            {isDevelopment ? 'DEV' : 'PROD'}
+          </button>
+        </div>
+      </div>
+
+      <App development={isDevelopment} />
+    </>
   );
 }
 
