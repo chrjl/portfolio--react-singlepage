@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import clsx from 'clsx';
 
 import githubMark from './assets/github-mark.svg';
 import nodeLogo from './assets/nodejs-stacked-dark.svg';
@@ -9,17 +10,15 @@ import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid';
 import Card from './components/Card';
 
 import * as content from '../.contentlayer/generated';
-const { allPosts, allStubs, allArchives } = content;
+const { allDocuments } = content;
 
 function App({ development = false }) {
+  const allPublished = development
+    ? allDocuments
+    : allDocuments.filter((document) => document.isPublished);
 
   return (
     <div className="container relative mx-auto my-8 max-w-screen-sm font-sans">
-      {development && (
-        <div className="right absolute end-0 top-0 ml-auto rounded bg-black  px-2 font-bold text-white">
-          DEV
-        </div>
-      )}
       <header className="my-8 text-center">
         <h1 className="text-4xl font-extrabold">Christopher Lee</h1>
 
@@ -51,46 +50,21 @@ function App({ development = false }) {
         </h3>
       </header>
 
-      <ul className="mt-16">
-        {allPosts &&
-          allPosts.map((document) => (
-            <li key={document._id} className="group relative m-8">
-              {development && (
-                <CardTooltip
-                  text={`${document.type} -- ${document._raw.flattenedPath}`}
-                />
-              )}
-              <Card {...document} />
-            </li>
-          ))}
-
-        {allStubs &&
-          allStubs.map((document) => (
-            <li key={document._id} className="group relative m-8">
-              {development && (
-                <CardTooltip
-                  text={`${document.type} -- ${document._raw.flattenedPath}`}
-                />
-              )}
-              <Card {...document} />
-            </li>
-          ))}
-
-        {allArchives &&
-          allArchives.map((document) => (
+      {allPublished && (
+        <ul className="mt-16">
+          {allPublished.map((document) => (
             <li
               key={document._id}
-              className="group relative m-8 italic opacity-75"
+              className={clsx('group', 'relative', 'm-8', {
+                'opacity-80': document.type !== 'Post',
+              })}
             >
-              {development && (
-                <CardTooltip
-                  text={`${document.type} -- ${document._raw.flattenedPath}`}
-                />
-              )}
+              {development && <CardTooltip text={document.type} />}
               <Card {...document} />
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 }
