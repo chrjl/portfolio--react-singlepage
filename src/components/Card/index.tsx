@@ -16,7 +16,7 @@ interface CardProps {
 }
 
 export default function Card(props: CardProps) {
-  const { title, keywords, description, links } = props;
+  const { title, keywords, description, links, status } = props;
 
   return (
     <div className="group h-full border-2 border-solid border-black p-4 text-lg hover:bg-gray-200">
@@ -27,6 +27,14 @@ export default function Card(props: CardProps) {
 
       {description && (
         <div className="content mt-8 text-sm">
+          {status && (
+            <>
+              <div className="text-[0.95em] italic leading-tight">
+                {parse(sanitize(status.html))}
+              </div>
+              <hr />
+            </>
+          )}
           {parse(sanitize(description.html))}
         </div>
       )}
