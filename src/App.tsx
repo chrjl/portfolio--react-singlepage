@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 import { DocumentModel } from './models';
@@ -11,14 +11,27 @@ import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid';
 
 import Card from './components/Card';
 
-import * as content from '../.contentlayer/generated';
-const { allDocuments }: { allDocuments: DocumentModel[] } = content;
 
 function App({ development = false }) {
   const [allPublished, setPublished] = useState<DocumentModel[] | undefined>(
     development ? allDocument : allDocuments.filter((document) => document.isPublished) 
   );
+  useEffect(() => {
+    importContent();
 
+    async function importContent() {
+      const content = await import('../content');
+      const { allDocuments }: { allDocuments: DocumentModel[] } = content;
+
+      setPublished(
+        development
+          ? allDocuments
+          : allDocuments.filter(
+              (document: DocumentModel) => document.isPublished
+            )
+      );
+    }
+  }, [development]);
   return (
     <div className="container relative mx-auto my-8 max-w-screen-sm font-sans">
       <header className="my-8 text-center">
@@ -58,7 +71,7 @@ function App({ development = false }) {
             <li
               key={document._id}
               className={clsx('group', 'relative', 'm-8', {
-                'opacity-80': document.type !== 'Post',
+                'opacity-60': document.type !== 'Post',
               })}
             >
               {development && <CardTooltip text={document.type} />}
