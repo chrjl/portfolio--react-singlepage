@@ -15,9 +15,9 @@ import * as content from '../.contentlayer/generated';
 const { allDocuments }: { allDocuments: DocumentModel[] } = content;
 
 function App({ development = false }) {
-  const allPublished = development
-    ? allDocuments
-    : allDocuments.filter((document) => document.isPublished);
+  const [allPublished, setPublished] = useState<DocumentModel[] | undefined>(
+    development ? allDocument : allDocuments.filter((document) => document.isPublished) 
+  );
 
   return (
     <div className="container relative mx-auto my-8 max-w-screen-sm font-sans">
