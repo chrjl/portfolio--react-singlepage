@@ -12,11 +12,23 @@ import { ArrowsRightLeftIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 import Card from './components/Card';
 
 
-function App({ development = false }) {
+interface AppProps {
+  development?: boolean;
+  allDocuments?: DocumentModel[];
+}
+
+function App({ development = false, allDocuments }: AppProps) {
   const [allPublished, setPublished] = useState<DocumentModel[] | undefined>(
-    development ? allDocument : allDocuments.filter((document) => document.isPublished) 
+    allDocuments
   );
+
   useEffect(() => {
+    if (development) {
+      setPublished(allDocuments);
+      console.log({ allDocuments });
+      return;
+    }
+
     importContent();
 
     async function importContent() {
@@ -24,14 +36,11 @@ function App({ development = false }) {
       const { allDocuments }: { allDocuments: DocumentModel[] } = content;
 
       setPublished(
-        development
-          ? allDocuments
-          : allDocuments.filter(
-              (document: DocumentModel) => document.isPublished
-            )
+        allDocuments.filter((document: DocumentModel) => document.isPublished)
       );
     }
-  }, [development]);
+  }, [development, allDocuments]);
+
   return (
     <div className="container relative mx-auto my-8 max-w-screen-sm font-sans">
       <header className="my-8 text-center">
@@ -121,7 +130,7 @@ export function DevApp() {
         </div>
       </div>
 
-      <App development={isDevelopment} />
+      <App development={isDevelopment} allDocuments={allPublished} />
     </>
   );
 }
