@@ -7,7 +7,7 @@ import githubMark from './assets/github-mark.svg';
 import nodeLogo from './assets/nodejs-stacked-dark.svg';
 import reactLogo from './assets/react.svg';
 import tsLogo from './assets/ts-logo-128.svg';
-import { ArrowsRightLeftIcon } from '@heroicons/react/24/solid';
+import { ArrowsRightLeftIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 
 import Card from './components/Card';
 
@@ -86,11 +86,16 @@ function App({ development = false }) {
 
 export function DevApp() {
   const [isDevelopment, setDevelopment] = useState(true);
+  const [allDocuments, setAllDocuments] = useState<DocumentModel[]>([]);
+
+  const allPublished = isDevelopment
+    ? allDocuments
+    : allDocuments?.filter((document) => document.isPublished);
 
   return (
     <>
       <div className="sticky top-0 z-50 h-8 bg-black">
-        <div className="mx-auto max-w-screen-sm align-middle font-sans font-bold  text-white">
+        <div className="mx-auto max-w-screen-sm align-middle font-sans font-bold  text-white [&>button]:mx-4 [&>button]:first:ml-0">
           <button
             type="button"
             className="rounded border-2 border-solid border-white px-2"
@@ -99,6 +104,20 @@ export function DevApp() {
             <ArrowsRightLeftIcon className="inline h-4 stroke-2 pr-1" />
             {isDevelopment ? 'DEV' : 'PROD'}
           </button>
+
+          {isDevelopment && (
+            <button
+              type="button"
+              className="rounded border-2 border-solid border-white px-2"
+              onClick={async () => {
+                const content = await import('../content');
+                setAllDocuments(content.allDocuments);
+              }}
+            >
+              <ArrowPathIcon className="inline h-4 stroke-2 pr-1" />
+              Import content
+            </button>
+          )}
         </div>
       </div>
 
