@@ -50,13 +50,13 @@ function App({ development = false, allDocuments }: AppProps) {
           JavaScript Developer
           <span className="ml-4 inline-block [&>a]:ml-1.5 [&_img]:inline [&_img]:h-6">
             <a href="https://nodejs.org/about" target="_blank">
-              <img src={nodeLogo} />
+              <img src={nodeLogo} alt="node" />
             </a>
             <a href="https://react.dev" target="_blank">
-              <img src={reactLogo} />
+              <img src={reactLogo} alt="react" />
             </a>
             <a href="https://typescriptlang.org" target="_blank">
-              <img src={tsLogo} />
+              <img src={tsLogo} alt="typescript" />
             </a>
           </span>
           <div className="mt-1 text-base font-medium">
