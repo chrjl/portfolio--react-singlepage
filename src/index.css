@@ -18,14 +18,16 @@
     & p {
       margin: 1em 0;
 
+      /*
       &:has(+ ul) {
         margin-bottom: 0;
       }
+      */
     }
 
     & ul {
       list-style-type: disc;
-      margin-left: 2em;
+      margin-left: 1em;
       display: inline-block;
 
       & li.task-list-item {
@@ -39,6 +41,21 @@
 
       & p {
         margin: 0.5em 0;
+      }
+    }
+
+    & dl {
+      margin: 2em 1em;
+
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 1em;
+      row-gap: 0.5em;
+      align-items: middle;
+
+      & dt {
+        text-transform: uppercase;
+        font-weight: bold;
       }
     }
   }
