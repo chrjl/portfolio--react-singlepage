@@ -11,7 +11,7 @@ export default function Card(props: DocumentModel) {
   const { title, keywords, links, body, headnote } = props;
 
   return (
-    <div className="group h-full border-2 border-solid border-black p-4 text-lg hover:bg-gray-200">
+    <div className="group h-full border-2 border-solid border-black bg-gradient-to-b p-4 text-lg hover:from-gray-300 hover:to-gray-100">
       <div className="group text-center font-semibold group-hover:font-bold sm:text-left">
         <CardTitle title={title} />
         {keywords && <CardKeywords keywords={keywords} />}
