@@ -8,7 +8,7 @@ import CardKeywords from './CardKeywords';
 import CardLinks from './CardLinks';
 
 export default function Card(props: DocumentModel) {
-  const { title, keywords, description, links, status } = props;
+  const { title, keywords, links, body, headnote } = props;
 
   return (
     <div className="group h-full border-2 border-solid border-black p-4 text-lg hover:bg-gray-200">
@@ -17,17 +17,17 @@ export default function Card(props: DocumentModel) {
         {keywords && <CardKeywords keywords={keywords} />}
       </div>
 
-      {description && (
+      {body.html && (
         <div className="content mt-8 text-sm">
-          {status && (
+          {headnote && (
             <>
               <div className="text-[0.95em] italic leading-tight">
-                {parse(sanitize(status.html))}
+                {parse(sanitize(headnote.html))}
               </div>
               <hr />
             </>
           )}
-          {parse(sanitize(description.html))}
+          {parse(sanitize(body.html))}
         </div>
       )}
 

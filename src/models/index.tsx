@@ -21,7 +21,7 @@ export interface DocumentModel {
   isPublished?: boolean;
   title: string[];
   keywords?: string[];
-  description?: Markdown;
-  status?: Markdown;
+  body: Markdown;
+  headnote?: Markdown;
   links?: LinksType;
 }
