@@ -1,16 +1,45 @@
-# `chrjl.dev`
+# Portfolio website (single page version)
 
-Single-page version with no routing, using (typed) data imported by [Contentlayer](https://contentlayer.dev/).
+React single-page export with bespoke components and styling.
 
-## Dev environment
+- **Content** -- BYO data module
+- **Styling** -- Tailwind CSS, [`@heroicons/react`](https://heroicons.com)
+- **Build** -- Vite 5
 
-Vite and Contentlayer dev servers are run separately, so live-updating is a two-step process. The two processes are run concurrently using the `concurrently` package.
+## Build process
 
-- [x] The Contentlayer server watches for changes to raw content (Markdown + YAML frontmatter) in `content/` and exports typed data to `.contentlayer/`.
+Mount or author a data module at `content/`. Import from this path is hardcoded into the the top-level `App` component.
 
-  > [!NOTE]
-  > The Contentlayer install requires a workaround because of [dependency issues](https://github.com/contentlayerdev/contentlayer/issues/564).
+> [!NOTE]
+> Git subtree (or submodule) can be used to accomplish this.
+>
+> ```console
+> git subtree add --prefix=content <repo> <branch> [--squash]
+> git subtree pull --prefix=content <repo> <branch> [--squash]
+> ```
 
-- The Vite server imports data from `.contentlayer/` and watches for:
-  - [x] Changes to app code (`src/`)
-  - [ ] Changes to imported data (`.contentlayer/`)
+**If the content module needs to be built:** the `content/` subdirectory is configured as an `npm` workspace, to facilitate calling the data module's build (and dev) script with the `-w | --workspace` flag.
+
+```console
+npm run build -w content && npm run build
+```
+
+### Dev server
+
+Development in this app and its imported data module can be performed simultaneously using [`concurrently`](https://github.com/open-cli-tools/concurrently). `npm` dev scripts are provided for the content workspace and the Vite server.
+
+```console
+concurrently -c "auto" "npm:dev-*"
+```
+
+which should be equivalent to:
+
+```console
+concurrently -c "auto" "npm run dev -w content --if-present" "npm run dev"
+```
+
+## Content
+
+Content module implementations
+
+- Contentlayer: https://github.com/chrjl/portfolio--contentlayer
